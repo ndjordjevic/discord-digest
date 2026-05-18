@@ -1,0 +1,9 @@
+.env
+exports/*
+!exports/.gitkeep
+__pycache__/
+*.pyc
+.venv/
+.DS_Store
+dist/
+*.egg-info/

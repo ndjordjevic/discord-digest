@@ -1,0 +1,7 @@
+# List the Discord channels to digest.
+# `since` is optional: ISO date for the first export when no prior digest exists.
+channels:
+  - server: Rumbledethumps
+    channel_id: "1036721593763778641"
+    channel_name: chat
+    since: 2020-01-01
