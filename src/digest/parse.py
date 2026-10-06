@@ -28,11 +28,20 @@ KEEP_TYPES = {"Default", "Reply", "ChannelPinnedMessage"}
 _CDN_HOSTS = ("cdn.discordapp.com", "media.discordapp.net")
 
 
-def load_messages(export_path: Path) -> list[dict]:
-    """Load the `messages` array from a DiscordChatExporter JSON file."""
+def load_export(export_path: Path) -> tuple[dict, list[dict]]:
+    """Load a DiscordChatExporter JSON file → ({guild_id, channel_id}, messages)."""
     with export_path.open(encoding="utf-8") as f:
         data = json.load(f)
-    return data.get("messages", [])
+    meta = {
+        "guild_id": (data.get("guild") or {}).get("id"),
+        "channel_id": (data.get("channel") or {}).get("id"),
+    }
+    return meta, data.get("messages", [])
+
+
+def load_messages(export_path: Path) -> list[dict]:
+    """Load the `messages` array from a DiscordChatExporter JSON file."""
+    return load_export(export_path)[1]
 
 
 def is_relevant(msg: dict) -> bool:
@@ -62,6 +71,53 @@ def bucket_by_week(messages: list[dict]) -> dict[str, list[dict]]:
             continue
         buckets[iso_week(ts)].append(msg)
     return dict(buckets)
+
+
+def _parse_ts(timestamp: str) -> datetime:
+    return datetime.fromisoformat(timestamp.replace("Z", "+00:00"))
+
+
+def lead_in_context(
+    messages: list[dict],
+    week: str,
+    *,
+    max_messages: int = 30,
+    lookback_hours: float = 48.0,
+) -> list[dict]:
+    """Messages from before `week` that the week's opening conversation may depend on.
+
+    Takes up to `max_messages` of the latest messages posted within
+    `lookback_hours` before the week's first message (the summarizer decides
+    which are actually related), plus any older message that an in-week reply
+    points at. `messages` must be relevant messages sorted by timestamp.
+    """
+    week_msgs = [m for m in messages if iso_week(m["timestamp"]) == week]
+    if not week_msgs:
+        return []
+    first_ts = _parse_ts(week_msgs[0]["timestamp"])
+    before = [m for m in messages if _parse_ts(m["timestamp"]) < first_ts]
+
+    picked = [
+        m for m in before[-max_messages:]
+        if (first_ts - _parse_ts(m["timestamp"])).total_seconds() <= lookback_hours * 3600
+    ]
+    picked_ids = {m["id"] for m in picked}
+
+    by_id = {m["id"]: m for m in before}
+    for m in week_msgs:
+        ref = (m.get("reference") or {}).get("messageId")
+        if ref in by_id and ref not in picked_ids:
+            picked.append(by_id[ref])
+            picked_ids.add(ref)
+
+    return sorted(picked, key=lambda m: m["timestamp"])
+
+
+IMAGE_EXTS = (".png", ".jpg", ".jpeg", ".gif", ".webp")
+
+
+def is_image(file_name: str) -> bool:
+    return file_name.lower().endswith(IMAGE_EXTS)
 
 
 def extract_links(message: dict) -> list[str]:

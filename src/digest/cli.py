@@ -5,6 +5,7 @@ from __future__ import annotations
 import os
 import sys
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from datetime import timedelta
 from pathlib import Path
 
 import anthropic
@@ -12,8 +13,9 @@ import click
 import yaml
 from dotenv import load_dotenv
 
+from .assets import fetch_images, index_attachments
 from .export import export_channel
-from .parse import bucket_by_week, load_messages
+from .parse import bucket_by_week, is_image, is_relevant, lead_in_context, load_export
 from .render import (
     digest_path,
     read_checkpoint,
@@ -29,6 +31,9 @@ EXPORTS_DIR = REPO_ROOT / "exports"
 DIGESTS_DIR = REPO_ROOT / "digests"
 CHANNELS_FILE = REPO_ROOT / "channels.yaml"
 MAX_WORKERS = 2
+# Export this many days before the checkpoint week so the summarizer can see
+# a conversation that was already running when the week started.
+CONTEXT_LOOKBACK_DAYS = 7
 
 
 def _load_channels() -> dict[str, dict]:
@@ -50,6 +55,21 @@ def _export_path(channel_id: str) -> Path:
     return EXPORTS_DIR / f"{channel_id}.json"
 
 
+def _attach_orphan_files(summary, week_atts: dict[str, dict]) -> None:
+    """Give every downloadable file the model didn't pick to the topic whose anchor
+    message is closest in time (snowflake IDs are time-ordered), so no release is lost."""
+    topics = [t for t in summary.top_topics if t.anchor_msg_ids]
+    if not topics:
+        return
+    picked = {a for t in summary.top_topics for a in t.attachment_ids}
+    for att_id, att in week_atts.items():
+        if att_id in picked or is_image(att["file_name"]):
+            continue
+        msg = int(att["msg_id"])
+        nearest = min(topics, key=lambda t: min(abs(int(i) - msg) for i in t.anchor_msg_ids))
+        nearest.attachment_ids.append(att_id)
+
+
 @click.group()
 def cli() -> None:
     load_dotenv(REPO_ROOT / ".env")
@@ -68,7 +88,7 @@ def export(channel_id: str, since: str | None) -> None:
     if since is None:
         checkpoint = read_checkpoint(DIGESTS_DIR, cfg["server"], cfg["channel_name"])
         if checkpoint:
-            since = week_monday(checkpoint["last_week"]).isoformat()
+            since = (week_monday(checkpoint["last_week"]) - timedelta(days=CONTEXT_LOOKBACK_DAYS)).isoformat()
         if since is None:
             since = str(cfg.get("since")) if cfg.get("since") else None
 
@@ -88,26 +108,53 @@ def summarize(channel_id: str, week: str | None) -> None:
     if not export_path.exists():
         raise click.ClickException(f"No export at {export_path}. Run `digest export {channel_id}` first.")
 
-    messages = load_messages(export_path)
-    buckets = bucket_by_week(messages)
+    meta, messages = load_export(export_path)
+    relevant = sorted((m for m in messages if is_relevant(m) and m.get("timestamp")), key=lambda m: m["timestamp"])
+    buckets = bucket_by_week(relevant)
+    attachments = index_attachments(relevant)
     if not buckets:
         click.echo("No relevant messages found.")
         return
 
-    weeks = [week] if week else sorted(buckets)
+    if week:
+        weeks = [week]
+    else:
+        # The export reaches back before the checkpoint week for lead-in context;
+        # those earlier weeks are already digested and must not be redone.
+        checkpoint = read_checkpoint(DIGESTS_DIR, cfg["server"], cfg["channel_name"])
+        weeks = [w for w in sorted(buckets) if not checkpoint or w >= checkpoint["last_week"]]
     client = anthropic.Anthropic(max_retries=8)
 
     def process_week(w: str) -> tuple[str, str, str | None]:
         msgs = buckets.get(w, [])
         if not msgs:
             return w, "empty", None
+        context = lead_in_context(relevant, w)
         try:
-            summary = summarize_week(msgs, client=client)
+            summary = summarize_week(msgs, context=context, client=client)
         except WeekTooLargeError as e:
             return w, "skipped", str(e)
-        markdown = render_digest(summary, cfg["channel_name"], w, len(msgs))
         out = digest_path(DIGESTS_DIR, cfg["server"], cfg["channel_name"], w)
+        # Only attachments from this week's messages may be shown.
+        week_ids = {m["id"] for m in msgs}
+        week_atts = {k: dict(v) for k, v in attachments.items() if v["msg_id"] in week_ids}
+        for t in summary.top_topics:
+            # Drop IDs the model invented or took from lead-in context.
+            t.anchor_msg_ids = [i for i in t.anchor_msg_ids if i in week_ids]
+            t.attachment_ids = [i for i in t.attachment_ids if i in week_atts]
+            fetch_images(t.attachment_ids, week_atts, out.parent, w)
+        _attach_orphan_files(summary, week_atts)
+        markdown = render_digest(
+            summary, cfg["channel_name"], w, len(msgs),
+            guild_id=meta["guild_id"], channel_id=meta["channel_id"], attachments=week_atts,
+        )
         write_digest(markdown, out)
+        # A re-run may pick different images; drop the ones no longer referenced.
+        week_assets = out.parent / "assets" / w
+        if week_assets.is_dir():
+            for f in week_assets.iterdir():
+                if f"assets/{w}/{f.name}" not in markdown:
+                    f.unlink()
         return w, "ok", msgs[-1].get("id", "")
 
     results: dict[str, tuple[str, str | None]] = {}
@@ -115,7 +162,8 @@ def summarize(channel_id: str, week: str | None) -> None:
         futures = {pool.submit(process_week, w): w for w in weeks}
         for w, msgs in ((w, buckets.get(w, [])) for w in weeks):
             if msgs:
-                click.echo(f"  {w}: queued ({len(msgs)} messages)")
+                n_ctx = len(lead_in_context(relevant, w))
+                click.echo(f"  {w}: queued ({len(msgs)} messages" + (f", +{n_ctx} lead-in" if n_ctx else "") + ")")
         for fut in as_completed(futures):
             w = futures[fut]
             try:
@@ -138,7 +186,9 @@ def summarize(channel_id: str, week: str | None) -> None:
     click.echo(f"Done: {n_ok} ok, {n_skipped} skipped, {n_failed} failed")
 
     ok_weeks = [w for w, (s, _) in results.items() if s == "ok"]
-    if ok_weeks:
+    previous = read_checkpoint(DIGESTS_DIR, cfg["server"], cfg["channel_name"])
+    # Re-doing an older week (e.g. `--week`) must not move the checkpoint backwards.
+    if ok_weeks and (not previous or max(ok_weeks) >= previous["last_week"]):
         last_week = max(ok_weeks)
         last_msg_id = results[last_week][1] or ""
         write_checkpoint(DIGESTS_DIR, cfg["server"], cfg["channel_name"], last_week, last_msg_id)

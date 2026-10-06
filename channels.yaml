@@ -5,3 +5,7 @@ channels:
     channel_id: "1036721593763778641"
     channel_name: chat
     since: 2020-01-01
+  - server: ApolloTeam
+    channel_id: "1091013242089918544"
+    channel_name: democoding
+    since: 2026-09-28
