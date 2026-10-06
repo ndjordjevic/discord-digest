@@ -1,0 +1,143 @@
+{
+  "summary": {
+    "root": "evals/runs/lines-high-2",
+    "recall": 89.7,
+    "trap_hits": 0,
+    "unsupported": 3,
+    "words_total": 1347,
+    "over_budget_weeks": [],
+    "check_failures": 0,
+    "generation_cost_usd": 0.0919
+  },
+  "weeks": [
+    {
+      "week": "2026-W24",
+      "recall": "2/2",
+      "missed": [],
+      "traps": [],
+      "unsupported": [],
+      "words": 90,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    },
+    {
+      "week": "2026-W26",
+      "recall": "5/5",
+      "missed": [],
+      "traps": [],
+      "unsupported": [],
+      "words": 228,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    },
+    {
+      "week": "2026-W27",
+      "recall": "1/1",
+      "missed": [],
+      "traps": [],
+      "unsupported": [],
+      "words": 73,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    },
+    {
+      "week": "2026-W29",
+      "recall": "2/2",
+      "missed": [],
+      "traps": [],
+      "unsupported": [
+        "The digest calls phaseshift an effect 'for fred80' that might make it into a 'fred80 release'. The messages never tie phaseshift to fred80; it was only 'a release'."
+      ],
+      "words": 130,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    },
+    {
+      "week": "2026-W33",
+      "recall": "0/0",
+      "missed": [],
+      "traps": [],
+      "unsupported": [],
+      "words": 14,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    },
+    {
+      "week": "2026-W35",
+      "recall": "6/9",
+      "missed": [
+        "hansolo9190 reported Supersonic works flawlessly on the A6000",
+        "FRED-80 demos (one written by Claude) run on real Apollo V4SA hardware",
+        "hansolo9190 wished for a demoparty with an Apollo/Vampire category"
+      ],
+      "traps": [],
+      "unsupported": [
+        "pellicus.pelella.dario said Supersonic placed only a few votes ahead — he said 'we chased them .. few votes at the end', which suggests Supersonic finished behind, not ahead.",
+        "rogue_particle thanked the makers of two FRED-80 demos — he thanked them for one demo and only remarked that the second looked cool."
+      ],
+      "words": 350,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    },
+    {
+      "week": "2026-W36",
+      "recall": "1/1",
+      "missed": [],
+      "traps": [],
+      "unsupported": [],
+      "words": 67,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    },
+    {
+      "week": "2026-W37",
+      "recall": "1/1",
+      "missed": [],
+      "traps": [],
+      "unsupported": [],
+      "words": 64,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    },
+    {
+      "week": "2026-W39",
+      "recall": "2/2",
+      "missed": [],
+      "traps": [],
+      "unsupported": [],
+      "words": 86,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    },
+    {
+      "week": "2026-W40",
+      "recall": "6/6",
+      "missed": [],
+      "traps": [],
+      "unsupported": [],
+      "words": 245,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    }
+  ]
+}

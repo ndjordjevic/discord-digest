@@ -1,0 +1,146 @@
+{
+  "summary": {
+    "root": "evals/runs/lines-high",
+    "recall": 100.0,
+    "trap_hits": 0,
+    "unsupported": 5,
+    "words_total": 1476,
+    "over_budget_weeks": [
+      "2026-W35"
+    ],
+    "check_failures": 0,
+    "generation_cost_usd": 0.1091
+  },
+  "weeks": [
+    {
+      "week": "2026-W24",
+      "recall": "2/2",
+      "missed": [],
+      "traps": [],
+      "unsupported": [
+        "No tester has volunteered yet."
+      ],
+      "words": 83,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    },
+    {
+      "week": "2026-W26",
+      "recall": "5/5",
+      "missed": [],
+      "traps": [],
+      "unsupported": [],
+      "words": 231,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    },
+    {
+      "week": "2026-W27",
+      "recall": "1/1",
+      "missed": [],
+      "traps": [],
+      "unsupported": [
+        "Earlier in the week's background, the demo was shown as an Apollo V4SA and A6000 production. (This comes only from background messages, not this week.)"
+      ],
+      "words": 105,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    },
+    {
+      "week": "2026-W29",
+      "recall": "2/2",
+      "missed": [],
+      "traps": [],
+      "unsupported": [
+        "The messages never explicitly say the phaseshift effect is for fred80 or would land in a fred80 release; fred80 is mentioned only in connection with the ARM build."
+      ],
+      "words": 130,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    },
+    {
+      "week": "2026-W33",
+      "recall": "0/0",
+      "missed": [],
+      "traps": [],
+      "unsupported": [],
+      "words": 14,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    },
+    {
+      "week": "2026-W35",
+      "recall": "9/9",
+      "missed": [],
+      "traps": [],
+      "unsupported": [
+        "The shared demos (both of them) were written with Claude and run at 640x480, 256 colors, 50 fps — this is only stated for the first demo."
+      ],
+      "words": 445,
+      "over_budget": true,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    },
+    {
+      "week": "2026-W36",
+      "recall": "1/1",
+      "missed": [],
+      "traps": [],
+      "unsupported": [],
+      "words": 84,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    },
+    {
+      "week": "2026-W37",
+      "recall": "1/1",
+      "missed": [],
+      "traps": [],
+      "unsupported": [],
+      "words": 64,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    },
+    {
+      "week": "2026-W39",
+      "recall": "2/2",
+      "missed": [],
+      "traps": [],
+      "unsupported": [],
+      "words": 84,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    },
+    {
+      "week": "2026-W40",
+      "recall": "6/6",
+      "missed": [],
+      "traps": [],
+      "unsupported": [
+        "HazeDemo v2.3 'following the first V4-only release from last week' comes only from background messages."
+      ],
+      "words": 236,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    }
+  ]
+}

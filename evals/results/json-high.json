@@ -1,0 +1,143 @@
+{
+  "summary": {
+    "root": "evals/runs/json-high",
+    "recall": 100.0,
+    "trap_hits": 0,
+    "unsupported": 4,
+    "words_total": 1413,
+    "over_budget_weeks": [
+      "2026-W35"
+    ],
+    "check_failures": 0,
+    "generation_cost_usd": 0.1424
+  },
+  "weeks": [
+    {
+      "week": "2026-W24",
+      "recall": "2/2",
+      "missed": [],
+      "traps": [],
+      "unsupported": [
+        "No tester had volunteered by the end of the week."
+      ],
+      "words": 89,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    },
+    {
+      "week": "2026-W26",
+      "recall": "5/5",
+      "missed": [],
+      "traps": [],
+      "unsupported": [],
+      "words": 234,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    },
+    {
+      "week": "2026-W27",
+      "recall": "1/1",
+      "missed": [],
+      "traps": [],
+      "unsupported": [
+        "The demo shared first place in the Posadas Party 2026 Wild Compo (taken only from background).",
+        "The demo is an Apollo V4 / A6000 demo (taken only from background)."
+      ],
+      "words": 85,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    },
+    {
+      "week": "2026-W29",
+      "recall": "2/2",
+      "missed": [],
+      "traps": [],
+      "unsupported": [
+        "The digest presents the phase-shift effect as being for fred80 (\"phase-shift effect for fred80\", \"make it into a fred80 release\"), but the messages never link phaseshift to fred80; fred80 is mentioned only in connection with the ARM build."
+      ],
+      "words": 123,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    },
+    {
+      "week": "2026-W33",
+      "recall": "0/0",
+      "missed": [],
+      "traps": [],
+      "unsupported": [],
+      "words": 14,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    },
+    {
+      "week": "2026-W35",
+      "recall": "9/9",
+      "missed": [],
+      "traps": [],
+      "unsupported": [],
+      "words": 437,
+      "over_budget": true,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    },
+    {
+      "week": "2026-W36",
+      "recall": "1/1",
+      "missed": [],
+      "traps": [],
+      "unsupported": [],
+      "words": 36,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    },
+    {
+      "week": "2026-W37",
+      "recall": "1/1",
+      "missed": [],
+      "traps": [],
+      "unsupported": [],
+      "words": 65,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    },
+    {
+      "week": "2026-W39",
+      "recall": "2/2",
+      "missed": [],
+      "traps": [],
+      "unsupported": [],
+      "words": 87,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    },
+    {
+      "week": "2026-W40",
+      "recall": "6/6",
+      "missed": [],
+      "traps": [],
+      "unsupported": [],
+      "words": 243,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    }
+  ]
+}

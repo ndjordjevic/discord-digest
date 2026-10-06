@@ -1,0 +1,144 @@
+{
+  "summary": {
+    "root": "digests",
+    "recall": 93.1,
+    "trap_hits": 0,
+    "unsupported": 4,
+    "words_total": 1276,
+    "over_budget_weeks": [],
+    "check_failures": 0,
+    "generation_cost_usd": 0.1321
+  },
+  "weeks": [
+    {
+      "week": "2026-W24",
+      "recall": "2/2",
+      "missed": [],
+      "traps": [],
+      "unsupported": [],
+      "words": 88,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    },
+    {
+      "week": "2026-W26",
+      "recall": "5/5",
+      "missed": [],
+      "traps": [],
+      "unsupported": [
+        "The heading says balrogsoft \"wins OCS bootblock intro compo\", but balrogsoft only said he won first place in that category; a tie is not ruled out.",
+        "\"Music is an mp3 decoded at start\" mixes two points: nihirash said only that mp3 decoding happens on start, and the \"msx\" comment came from other_pisklak."
+      ],
+      "words": 207,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    },
+    {
+      "week": "2026-W27",
+      "recall": "1/1",
+      "missed": [],
+      "traps": [],
+      "unsupported": [],
+      "words": 80,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    },
+    {
+      "week": "2026-W29",
+      "recall": "2/2",
+      "missed": [],
+      "traps": [],
+      "unsupported": [
+        "The phase-shift experiment is described as being 'for fred80' and as possibly shipping 'in a fred80 release'. The messages never say the phaseshift work is part of fred80; fred80 is only mentioned for the ARM build."
+      ],
+      "words": 124,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    },
+    {
+      "week": "2026-W33",
+      "recall": "0/0",
+      "missed": [],
+      "traps": [],
+      "unsupported": [],
+      "words": 0,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    },
+    {
+      "week": "2026-W35",
+      "recall": "7/9",
+      "missed": [
+        "Supersonic, a new 060/AGA demo by Nah-Kolor, was shared and will get a Vampire version with dedicated features",
+        "other_pisklak said old gcc2 produces better code than vbcc and suggested ApolloGenie for cross-development"
+      ],
+      "traps": [],
+      "unsupported": [
+        "The videos describe demos (plural) written by Claude (Anthropic) / 'AI-made' demo videos — only the first video's preview mentions Claude; the PIXEL LEGENDS preview does not."
+      ],
+      "words": 368,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    },
+    {
+      "week": "2026-W36",
+      "recall": "1/1",
+      "missed": [],
+      "traps": [],
+      "unsupported": [],
+      "words": 35,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    },
+    {
+      "week": "2026-W37",
+      "recall": "1/1",
+      "missed": [],
+      "traps": [],
+      "unsupported": [],
+      "words": 64,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    },
+    {
+      "week": "2026-W39",
+      "recall": "2/2",
+      "missed": [],
+      "traps": [],
+      "unsupported": [],
+      "words": 88,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    },
+    {
+      "week": "2026-W40",
+      "recall": "6/6",
+      "missed": [],
+      "traps": [],
+      "unsupported": [],
+      "words": 222,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    }
+  ]
+}

@@ -1,0 +1,147 @@
+{
+  "summary": {
+    "root": "evals/runs/lines-low",
+    "recall": 100.0,
+    "trap_hits": 0,
+    "unsupported": 4,
+    "words_total": 1411,
+    "over_budget_weeks": [
+      "2026-W35"
+    ],
+    "check_failures": 0,
+    "generation_cost_usd": 0.0899
+  },
+  "weeks": [
+    {
+      "week": "2026-W24",
+      "recall": "2/2",
+      "missed": [],
+      "traps": [],
+      "unsupported": [],
+      "words": 84,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    },
+    {
+      "week": "2026-W26",
+      "recall": "5/5",
+      "missed": [
+        "nihirash shared 'The Bad Demo' for Apollo V4SA/A6000, a Posadas Party 2026 Wild Compo entry",
+        "The demo shared first place in the Wild Compo (tied on votes with another prod)",
+        "The long loading time is MP3 decoding at startup, which needs mpega.library"
+      ],
+      "traps": [],
+      "unsupported": [],
+      "words": 197,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    },
+    {
+      "week": "2026-W27",
+      "recall": "1/1",
+      "missed": [],
+      "traps": [],
+      "unsupported": [
+        "The demo tied for, or shared, first place in the Posadas Party 2026 Wild Compo: this comes only from background, not this week's messages.",
+        "The demo is for Apollo V4 and was shown at Posadas Party 2026: this comes only from background."
+      ],
+      "words": 88,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    },
+    {
+      "week": "2026-W29",
+      "recall": "2/2",
+      "missed": [],
+      "traps": [],
+      "unsupported": [
+        "The TL;DR describes the phaseshift effect as being 'for fred80'; the messages never tie the phaseshift demo to fred80."
+      ],
+      "words": 122,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    },
+    {
+      "week": "2026-W33",
+      "recall": "0/0",
+      "missed": [],
+      "traps": [],
+      "unsupported": [],
+      "words": 14,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    },
+    {
+      "week": "2026-W35",
+      "recall": "9/9",
+      "missed": [],
+      "traps": [],
+      "unsupported": [
+        "The shared videos are FRED-80 demos made by Claude (Anthropic) — only the first video is described as written by Claude"
+      ],
+      "words": 431,
+      "over_budget": true,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    },
+    {
+      "week": "2026-W36",
+      "recall": "1/1",
+      "missed": [],
+      "traps": [],
+      "unsupported": [],
+      "words": 94,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    },
+    {
+      "week": "2026-W37",
+      "recall": "1/1",
+      "missed": [],
+      "traps": [],
+      "unsupported": [],
+      "words": 56,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    },
+    {
+      "week": "2026-W39",
+      "recall": "2/2",
+      "missed": [],
+      "traps": [],
+      "unsupported": [],
+      "words": 86,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    },
+    {
+      "week": "2026-W40",
+      "recall": "6/6",
+      "missed": [],
+      "traps": [],
+      "unsupported": [],
+      "words": 239,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    }
+  ]
+}

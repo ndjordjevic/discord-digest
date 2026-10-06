@@ -1,0 +1,88 @@
+{
+  "channel_id": "1091013242089918544",
+  "weeks": {
+    "2026-W24": {
+      "facts": [
+        "nihirash is looking for one tester with a classic Amiga with a V4 accelerator",
+        "The tester must not share nihirash's demo before Posadas Party 2026"
+      ],
+      "traps": ["A demo was released or published this week"]
+    },
+    "2026-W26": {
+      "facts": [
+        "nihirash shared 'The Bad Demo' for Apollo V4SA/A6000, a Posadas Party 2026 Wild Compo entry",
+        "The demo shared first place in the Wild Compo (tied on votes with another prod)",
+        "The long loading time is MP3 decoding at startup, which needs mpega.library",
+        "nihirash plans to release it with sources after returning to Valencia",
+        "balrogsoft won first place in the OCS bootblock intro category with a 256-byte entry"
+      ],
+      "traps": [
+        "The Bad Demo won first place outright, with no tie",
+        "'msx' refers to the MSX computer platform",
+        "The sources were released this week"
+      ]
+    },
+    "2026-W27": {
+      "facts": ["nihirash posted a downloadable archive of The Bad Demo (NihirashiTheBadDemo.lha)"],
+      "traps": ["The demo's sources were released this week"]
+    },
+    "2026-W29": {
+      "facts": [
+        "rogue_particle shared a 'phaseshift' video/experiment and was unsure whether it will be released",
+        "rogue_particle plans to make an ARM build of FRED-80 next, to run on an Anbernic RG Cube XX handheld"
+      ],
+      "traps": ["phaseshift was released"]
+    },
+    "2026-W33": {
+      "facts": [],
+      "traps": ["A new demo was released this week"]
+    },
+    "2026-W35": {
+      "facts": [
+        "Supersonic, a new 060/AGA demo by Nah-Kolor, was shared and will get a Vampire version with dedicated features",
+        "Supersonic's authors asked people to test it on their systems and report bugs",
+        "hansolo9190 reported Supersonic works flawlessly on the A6000",
+        ".hellbeard asked how to code a simple parallax scrolling demo for SAGA in C",
+        "other_pisklak said old gcc2 produces better code than vbcc and suggested ApolloGenie for cross-development",
+        "biggun68080 said C has a performance disadvantage and AMMX/assembly is much better for graphics-heavy copying",
+        "FRED-80 is a Lua-based development environment for making games for Apollo V4, Windows and Mac",
+        "FRED-80 demos (one written by Claude) run on real Apollo V4SA hardware",
+        "hansolo9190 wished for a demoparty with an Apollo/Vampire category"
+      ],
+      "traps": [
+        "The Vampire version of Supersonic was released this week",
+        "FRED-80 is based on Python"
+      ]
+    },
+    "2026-W36": {
+      "facts": ["hansolo9190 shared 'The... Chaos', a 64K intro by Broken Cube"],
+      "traps": ["hansolo9190 made The... Chaos"]
+    },
+    "2026-W37": {
+      "facts": ["proton_fig was live-coding a new Vampire demo on Twitch"],
+      "traps": []
+    },
+    "2026-W39": {
+      "facts": [
+        "tommysammy released their first demo, HazeDemo_V4, made with help from Claude",
+        "HazeDemo is V4-only, runs in a loop from RAM and quits on mouse button"
+      ],
+      "traps": ["HazeDemo includes source code"]
+    },
+    "2026-W40": {
+      "facts": [
+        "tommysammy released Maggie Haze, a demo using the Maggie library, with source code in the package",
+        "tommysammy posted the final HazeDemo V4 version (v2.3)",
+        "Maggie Haze runs at low resolution because a 640x480 version was too slow for the 3D tunnels",
+        "tjomp got graphics errors running it on a V4SA",
+        "tjomp's Maggie.library is version 1.30 while hansolo9190 has 3.3; the cause is not confirmed",
+        "hansolo9190 shared Spy Girl by Oranges, a Wild entry from Deadline 2026"
+      ],
+      "traps": [
+        "HazeDemo v2.3 includes source code",
+        "The graphics errors were confirmed to be caused by the old Maggie.library",
+        "The graphics errors were fixed"
+      ]
+    }
+  }
+}

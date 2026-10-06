@@ -1,0 +1,149 @@
+{
+  "summary": {
+    "root": "evals/runs/lines-medium",
+    "recall": 96.6,
+    "trap_hits": 0,
+    "unsupported": 6,
+    "words_total": 1364,
+    "over_budget_weeks": [
+      "2026-W35"
+    ],
+    "check_failures": 0,
+    "generation_cost_usd": 0.0887
+  },
+  "weeks": [
+    {
+      "week": "2026-W24",
+      "recall": "2/2",
+      "missed": [],
+      "traps": [],
+      "unsupported": [],
+      "words": 88,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    },
+    {
+      "week": "2026-W26",
+      "recall": "5/5",
+      "missed": [],
+      "traps": [],
+      "unsupported": [],
+      "words": 208,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    },
+    {
+      "week": "2026-W27",
+      "recall": "1/1",
+      "missed": [],
+      "traps": [],
+      "unsupported": [
+        "The demo shared first place in the Posadas Party 2026 Wild Compo (background only)",
+        "The demo was shown at Posadas Party 2026 (background only)",
+        "The demo is for Apollo V4 (background only)"
+      ],
+      "words": 82,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    },
+    {
+      "week": "2026-W29",
+      "recall": "2/2",
+      "missed": [
+        "rogue_particle shared a 'phaseshift' video/experiment and was unsure whether it will be released"
+      ],
+      "traps": [],
+      "unsupported": [
+        "The phaseshift experiment is explicitly described as an effect/feature for fred80; the messages do not state that phaseshift is part of fred80.",
+        "The video is described as a screen recording; the messages only show a .mov file."
+      ],
+      "words": 134,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    },
+    {
+      "week": "2026-W33",
+      "recall": "0/0",
+      "missed": [],
+      "traps": [],
+      "unsupported": [],
+      "words": 14,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    },
+    {
+      "week": "2026-W35",
+      "recall": "8/9",
+      "missed": [
+        "FRED-80 demos (one written by Claude) run on real Apollo V4SA hardware"
+      ],
+      "traps": [],
+      "unsupported": [],
+      "words": 379,
+      "over_budget": true,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    },
+    {
+      "week": "2026-W36",
+      "recall": "1/1",
+      "missed": [],
+      "traps": [],
+      "unsupported": [],
+      "words": 85,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    },
+    {
+      "week": "2026-W37",
+      "recall": "1/1",
+      "missed": [],
+      "traps": [],
+      "unsupported": [],
+      "words": 56,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    },
+    {
+      "week": "2026-W39",
+      "recall": "2/2",
+      "missed": [],
+      "traps": [],
+      "unsupported": [],
+      "words": 89,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    },
+    {
+      "week": "2026-W40",
+      "recall": "6/6",
+      "missed": [],
+      "traps": [],
+      "unsupported": [
+        "HazeDemo is described as 'the V4-only Claude-assisted demo' — the V4-only and Claude details come only from background messages."
+      ],
+      "words": 229,
+      "over_budget": false,
+      "unknown_urls": [],
+      "unknown_jump_ids": [],
+      "duplicate_links": []
+    }
+  ]
+}

@@ -12,7 +12,7 @@ from __future__ import annotations
 import json
 import re
 from collections import defaultdict
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
 URL_RE = re.compile(r"https?://[^\s<>\"')]+")
@@ -55,7 +55,8 @@ def is_relevant(msg: dict) -> bool:
 
 def iso_week(timestamp: str) -> str:
     """ISO-8601 timestamp → 'YYYY-Www' (e.g., '2026-W20')."""
-    dt = datetime.fromisoformat(timestamp.replace("Z", "+00:00"))
+    # Bucket in UTC so a local-time export can't shift messages across the week boundary.
+    dt = datetime.fromisoformat(timestamp.replace("Z", "+00:00")).astimezone(timezone.utc)
     year, week, _ = dt.isocalendar()
     return f"{year}-W{week:02d}"
 

@@ -7,3 +7,10 @@ __pycache__/
 .DS_Store
 dist/
 *.egg-info/
+tools/
+logs/
+evals/runs/
+.batch_pending.json
+.digest.lock
+exports/*.partial.json
+*.tmp

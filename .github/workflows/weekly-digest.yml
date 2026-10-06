@@ -1,0 +1,35 @@
+name: Weekly digest
+
+on:
+  schedule:
+    - cron: "0 8 * * 1" # Mondays 08:00 UTC: digests the ISO week that just ended
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: weekly-digest
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: uv sync --frozen
+      - run: uv run digest install-exporter
+      - name: Export and digest all channels
+        env:
+          DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: uv run digest run-all
+      - name: Commit new digests
+        if: always() # keep digests of the channels that worked even if another one failed
+        run: |
+          git config user.name "discord-digest[bot]"
+          git config user.email "actions@users.noreply.github.com"
+          git add digests
+          git diff --cached --quiet || git commit -m "Weekly digest $(date -u +%G-W%V)"
+          git push

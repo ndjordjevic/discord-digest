@@ -1,11 +1,72 @@
 # List the Discord channels to digest.
 # `since` is optional: ISO date for the first export when no prior digest exists.
+# Rumbledethumps/chat (1036721593763778641, since 2020-01-01) is paused: its old digests stay, no new ones.
 channels:
-  - server: Rumbledethumps
-    channel_id: "1036721593763778641"
-    channel_name: chat
-    since: 2020-01-01
   - server: ApolloTeam
     channel_id: "1091013242089918544"
     channel_name: democoding
+    since: 2026-09-28
+  - server: ApolloTeam
+    channel_id: "745290452198096957"
+    channel_name: announcements
+    since: 2026-09-28
+  - server: ApolloTeam
+    channel_id: "1030386517375463455"
+    channel_name: amiga-events
+    since: 2026-09-28
+  - server: ApolloTeam
+    channel_id: "827071192195268608"
+    channel_name: english
+    since: 2026-09-28
+  - server: ApolloTeam
+    channel_id: "1530182174949642240"
+    channel_name: cpu-design-talk
+    since: 2026-09-28
+  - server: ApolloTeam
+    channel_id: "1091094123043369120"
+    channel_name: music
+    since: 2026-09-28
+  - server: ApolloTeam
+    channel_id: "1417931629510266971"
+    channel_name: a6000
+    since: 2026-09-28
+  - server: ApolloTeam
+    channel_id: "726871152848273418"
+    channel_name: v2-series-legacy
+    since: 2026-09-28
+  - server: ApolloTeam
+    channel_id: "726871100243312650"
+    channel_name: v4-series-the-best
+    since: 2026-09-28
+  - server: ApolloTeam
+    channel_id: "836274852720541757"
+    channel_name: apolloboot
+    since: 2026-09-28
+  - server: ApolloTeam
+    channel_id: "867113295740010546"
+    channel_name: apolloos
+    since: 2026-09-28
+  - server: ApolloTeam
+    channel_id: "969942713560621157"
+    channel_name: games
+    since: 2026-09-28
+  - server: ApolloTeam
+    channel_id: "1383027223128444928"
+    channel_name: compatibility-campaign
+    since: 2026-09-28
+  - server: ApolloTeam
+    channel_id: "858224790808821760"
+    channel_name: atari
+    since: 2026-09-28
+  - server: ApolloTeam
+    channel_id: "941314613134381097"
+    channel_name: maggie3d
+    since: 2026-09-28
+  - server: ApolloTeam
+    channel_id: "730698753513750539"
+    channel_name: developers
+    since: 2026-09-28
+  - server: ApolloTeam
+    channel_id: "804244697996328961"
+    channel_name: videoroom
     since: 2026-09-28

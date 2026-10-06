@@ -8,6 +8,7 @@ digest under `assets/<week>/`; other files (zips etc.) are only listed by name.
 from __future__ import annotations
 
 import io
+import time
 import urllib.error
 import urllib.request
 from pathlib import Path
@@ -16,9 +17,11 @@ from PIL import Image, ImageOps, UnidentifiedImageError
 
 from .parse import is_image
 
-MAX_IMAGES_PER_TOPIC = 4
+# One thumbnail per topic keeps the digest scannable (see render.py).
+MAX_IMAGES_PER_TOPIC = 1
 # Phone photos are often 2-3 MB; downscale before committing them to the repo.
-MAX_IMAGE_SIDE = 1200
+MAX_IMAGE_SIDE = 800
+DOWNLOAD_RETRIES = 3
 _USER_AGENT = "discord-digest/0.1"
 
 
@@ -42,12 +45,22 @@ def _download(url: str, dest: Path) -> bool:
         return True
     dest.parent.mkdir(parents=True, exist_ok=True)
     req = urllib.request.Request(url, headers={"User-Agent": _USER_AGENT})
-    try:
-        with urllib.request.urlopen(req, timeout=60) as resp:
-            data = resp.read()
-    except (urllib.error.URLError, TimeoutError):
-        return False
-    dest.write_bytes(_shrink(data, dest.suffix.lower()))
+    for attempt in range(DOWNLOAD_RETRIES):
+        try:
+            with urllib.request.urlopen(req, timeout=60) as resp:
+                data = resp.read()
+            break
+        except urllib.error.HTTPError as e:
+            # Expired/forbidden links won't recover; retrying them only looks like abuse to Discord.
+            if e.code in (401, 403, 404) or attempt == DOWNLOAD_RETRIES - 1:
+                return False
+        except (urllib.error.URLError, TimeoutError):
+            if attempt == DOWNLOAD_RETRIES - 1:
+                return False
+        time.sleep(2 ** attempt)
+    tmp = dest.with_name(dest.name + ".tmp")  # atomic: a crash must not leave a corrupt "cached" file
+    tmp.write_bytes(_shrink(data, dest.suffix.lower()))
+    tmp.replace(dest)
     return True
 
 
@@ -72,11 +85,23 @@ def _shrink(data: bytes, suffix: str) -> bytes:
         return data
 
 
-def fetch_images(attachment_ids: list[str], attachments: dict[str, dict], digest_dir: Path, week: str) -> None:
-    """Download the picked image attachments; sets `local` (path relative to digest_dir) on success."""
+def fetch_images(
+    attachment_ids: list[str],
+    attachments: dict[str, dict],
+    digest_dir: Path,
+    week: str,
+    limit: int = MAX_IMAGES_PER_TOPIC,
+) -> None:
+    """Download up to `limit` of the picked image attachments; sets `local`
+    (path relative to digest_dir) on success."""
+    got = 0
     for att_id in attachment_ids:
         att = attachments.get(att_id)
-        if not att or not is_image(att["file_name"]) or "local" in att:
+        if got >= limit:
+            break
+        if not att or not is_image(att["file_name"]):
             continue
-        rel = Path("assets") / week / f"{att_id}-{att['file_name']}"
-        att["local"] = rel.as_posix() if att.get("url") and _download(att["url"], digest_dir / rel) else None
+        if "local" not in att:
+            rel = Path("assets") / week / f"{att_id}-{att['file_name']}"
+            att["local"] = rel.as_posix() if att.get("url") and _download(att["url"], digest_dir / rel) else None
+        got += bool(att["local"])
