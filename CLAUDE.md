@@ -79,3 +79,22 @@ When summarizing a week, the tool also feeds the model up to 30 messages from th
   "type": "Default | Reply | ChannelPinnedMessage"
 }
 ```
+
+## Searching the live Discord server (read-only)
+
+Server: ApolloTeam, ID 726870908568076380 → https://discord.com/channels/726870908568076380 (invite discord.gg/EX5Sj5C is invalid, don't use it). Use it for things the digests/exports don't cover; search digests first.
+
+Rules: read-only (never post/react/change anything). If Discord redirects to `/login`, STOP and ask the user to log in themselves — never log in for them. Search is keyword-AND, not semantic: use few, specific words. Report every hit as channel + author + date + quoted snippet; if nothing is found say "no hits", never fill the gap from memory. Don't commit/push unless asked.
+
+**Method A — Playwright MCP** (if `mcp__playwright__*` tools exist; load via ToolSearch): open the server URL, click `div[role="combobox"][aria-label^="Search"]`, CLEAR it first (click → ControlOrMeta+a → Backspace; typing doesn't replace old text), type query, Enter, wait ~2.5 s, read `document.querySelector('[aria-label="Search Results"]').innerText` via browser_evaluate. Untested here — the MCP wasn't configured.
+
+**Method B — Python Playwright scripts** (`scripts/discord_search.py`, `scripts/discord_login.py`; verified working, "FMODE" → 36 results). Set `S` to the session scratchpad (deleted when the session ends, so redo this each session):
+```bash
+pip install --target $S/pwlib playwright        # pip --user is blocked by PEP 668, no venv available
+PYTHONPATH=$S/pwlib PLAYWRIGHT_BROWSERS_PATH=$S/pwbrowsers python3 -m playwright install chromium   # ~660 MB
+# one-time login: opens a visible Chromium on a fresh profile; the USER logs in (waits up to 10 min)
+PLAYWRIGHT_BROWSERS_PATH=$S/pwbrowsers python3 -I scripts/discord_login.py $S/pwlib $S/discord-profile
+# search (headless=False, needs the desktop display; batches several queries into one file)
+PLAYWRIGHT_BROWSERS_PATH=$S/pwbrowsers python3 -I scripts/discord_search.py $S/pwlib $S/discord-profile $S/out.txt "query1" "query2"
+```
+Don't copy another session's profile (it holds login cookies; Chromium also locks a profile in use). If the login script times out before the user finishes, just relaunch it — a completed login persists in the profile.
