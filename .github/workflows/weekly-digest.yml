@@ -31,5 +31,5 @@ jobs:
           git config user.name "discord-digest[bot]"
           git config user.email "actions@users.noreply.github.com"
           git add digests
-          git diff --cached --quiet || git commit -m "Weekly digest $(date -u +%G-W%V)"
+          git diff --cached --quiet || git commit -m "Weekly digest $(date -u -d "7 days ago" +%G-W%V)"
           git push
