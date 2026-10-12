@@ -39,7 +39,7 @@ digest summarize <channel_id>     # summarize already-exported weeks
 digest eval --generate <label>    # generate the golden weeks with given options and score them
 ```
 
-**Weekly schedule:** `.github/workflows/weekly-digest.yml` runs `digest run-all` Mondays 08:00 UTC on GitHub Actions (works with your laptop off) and commits the new digests. Needs repo secrets `DISCORD_TOKEN` and `ANTHROPIC_API_KEY`; run it by hand from the Actions tab.
+**Weekly schedule:** `.github/workflows/weekly-digest.yml` runs `digest run-all` Mondays 08:17 UTC on GitHub Actions (works with your laptop off) and commits the new digests. Needs repo secrets `DISCORD_TOKEN` and `ANTHROPIC_API_KEY`; run it by hand from the Actions tab.
 
 **What a run digests:** completed ISO weeks after the checkpoint in `digests/<server>/<channel>/latest.json`, plus any week listed there under `failed_weeks`. The still-running week is skipped (`--include-current` to override); empty weeks produce no file. Exports start 7 days before the first pending week so a conversation that runs across the week boundary is given to the model as background, and end at this Monday (UTC).
 

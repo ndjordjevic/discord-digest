@@ -2,7 +2,7 @@ name: Weekly digest
 
 on:
   schedule:
-    - cron: "0 8 * * 1" # Mondays 08:00 UTC: digests the ISO week that just ended
+    - cron: "17 8 * * 1" # Mondays 08:17 UTC, digests the ISO week that just ended (off the hour: top-of-hour runs get delayed or dropped)
   workflow_dispatch:
 
 permissions:
